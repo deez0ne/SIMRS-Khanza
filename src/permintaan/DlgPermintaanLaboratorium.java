@@ -55,7 +55,7 @@ public final class DlgPermintaanLaboratorium extends javax.swing.JDialog {
     private boolean[] pilih,pilih2; 
     private String[] kode,nama,pemeriksaan2,satuan2,nilai_rujukan2,idtemplate2;
     private int jml=0,i=0,index=0,jml2=0,jml3=0,i2=0,index2=0,jmlparsial=0;
-    private String aktifkanparsial="no",norawatibu="",kelas="",kamar,namakamar,cara_bayar_lab="Yes",kelas_lab="Yes",status="",la="",ld="",pa="",pd="",finger="";
+    private String gtarif="",aktifkanparsial="no",norawatibu="",kelas="",kamar,namakamar,cara_bayar_lab="Yes",kelas_lab="Yes",status="",la="",ld="",pa="",pd="",finger="";
     private boolean sukses=true;
     
 
@@ -2454,6 +2454,9 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } 
             
             try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",Penjab.getText().trim());
+        if(gtarif.equals("")){
+        Penjab.setText("001");     }
                 if(cara_bayar_lab.equals("Yes")&&kelas_lab.equals("No")){
                     pstindakan.setString(1,Penjab.getText().trim());
                     pstindakan.setString(2,"%"+Pemeriksaan.getText().trim()+"%");
@@ -2865,6 +2868,10 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } 
             
             try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",Penjab.getText().trim());
+        if(gtarif.equals("")){
+        Penjab.setText("001"); 
+        }
                 if(cara_bayar_lab.equals("Yes")&&kelas_lab.equals("No")){
                     pstindakan.setString(1,Penjab.getText().trim());
                     pstindakan.setString(2,"%"+PemeriksaanPA.getText().trim()+"%");
@@ -2980,6 +2987,10 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } 
             
             try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",Penjab.getText().trim());
+        if(gtarif.equals("")){
+        Penjab.setText("001"); 
+        }
                 if(cara_bayar_lab.equals("Yes")&&kelas_lab.equals("No")){
                     pstindakan.setString(1,Penjab.getText().trim());
                     pstindakan.setString(2,"%"+PemeriksaanMB.getText().trim()+"%");

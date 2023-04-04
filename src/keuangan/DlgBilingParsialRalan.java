@@ -4519,6 +4519,10 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ? "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_radiologi where kd_pj=?",kd_pj);
+        if(gtarif.equals("")){
+        kd_pj="001";    
+        }
                     try {
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"Rawat Jalan");
@@ -4771,6 +4775,10 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and jns_perawatan_lab.nm_perawatan like ? "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
                     try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",kd_pj);
+        if(gtarif.equals("")){
+        kd_pj="001";    
+        }
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"%"+TCariTindakan.getText().trim()+"%");
                         pstindakan.setString(3,kd_pj.trim());
@@ -4837,6 +4845,10 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.nm_perawatan like ? "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
                     try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",kd_pj);
+        if(gtarif.equals("")){
+        kd_pj="001";    
+        }
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"Rawat Jalan");
                         pstindakan.setString(3,"%"+TCariTindakan.getText().trim()+"%");

@@ -1572,7 +1572,6 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         TPasien.setText(pasien);
         kddokter.setText("");
         this.kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText());
-        //JOptionPane.showMessageDialog(null, this.kd_pj);
         gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_inap where kd_pj=?",this.kd_pj);
         if(gtarif.equals("")){
         this.kd_pj="001";    

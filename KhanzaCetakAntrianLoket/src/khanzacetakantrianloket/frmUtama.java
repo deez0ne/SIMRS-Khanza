@@ -108,7 +108,7 @@ public class frmUtama extends javax.swing.JFrame {
             param.put("propinsirs",akses.getpropinsirs());
             param.put("kontakrs",akses.getkontakrs());
             param.put("emailrs",akses.getemailrs());
-            Valid.MyReportqry("rptAntriLoket.jasper","report","::[ Antrian Loket ]::",
+            Valid.MyReportqryctk("rptAntriLoket.jasper","report","::[ Antrian Loket ]::",
                    "select date_format(antriloketcetak.tanggal,'%d-%m-%Y') as tanggal,antriloketcetak.nomor,antriloketcetak.jam from antriloketcetak where antriloketcetak.tanggal=current_date and antriloketcetak.nomor='"+LabelNomor.getText()+"' ",param);
             this.setCursor(Cursor.getDefaultCursor());
             autonomer();
@@ -123,7 +123,7 @@ public class frmUtama extends javax.swing.JFrame {
                 param.put("propinsirs",akses.getpropinsirs());
                 param.put("kontakrs",akses.getkontakrs());
                 param.put("emailrs",akses.getemailrs());
-                Valid.MyReportqry("rptAntriLoket.jasper","report","::[ Antrian Loket ]::",
+                Valid.MyReportqryctk("rptAntriLoket.jasper","report","::[ Antrian Loket ]::",
                        "select date_format(antriloketcetak.tanggal,'%d-%m-%Y') as tanggal,antriloketcetak.nomor,antriloketcetak.jam from antriloketcetak where antriloketcetak.tanggal=current_date and antriloketcetak.nomor='"+LabelNomor.getText()+"' ",param);
                 this.setCursor(Cursor.getDefaultCursor());
                 autonomer();
@@ -138,7 +138,7 @@ public class frmUtama extends javax.swing.JFrame {
                     param.put("propinsirs",akses.getpropinsirs());
                     param.put("kontakrs",akses.getkontakrs());
                     param.put("emailrs",akses.getemailrs());
-                    Valid.MyReportqry("rptAntriLoket.jasper","report","::[ Antrian Loket ]::",
+                    Valid.MyReportqryctk("rptAntriLoket.jasper","report","::[ Antrian Loket ]::",
                            "select date_format(antriloketcetak.tanggal,'%d-%m-%Y') as tanggal,antriloketcetak.nomor,antriloketcetak.jam from antriloketcetak where antriloketcetak.tanggal=current_date and antriloketcetak.nomor='"+LabelNomor.getText()+"' ",param);
                     this.setCursor(Cursor.getDefaultCursor());
                     autonomer();
