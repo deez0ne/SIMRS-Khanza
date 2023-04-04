@@ -3,7 +3,18 @@
         exit(header("Location:../index.php"));
     }
     
-    $nopernyataan=validTeks($_GET['nopernyataan']); 
+    $nopernyataan="";
+    $cari    = trim(isset($_GET['iyem']))?trim($_GET['iyem']):NULL;
+    $cari    = json_decode(encrypt_decrypt($cari,"d"),true);
+    if (isset($cari["usere"])) {
+        if(($cari["usere"]==USERHYBRIDWEB)&&($cari["passwordte"]==PASHYBRIDWEB)){
+            $nopernyataan=validTeks4($cari['nopernyataan'],20); 
+        }else{
+            exit(header("Location:../index.php"));
+        }
+    }else{
+        exit(header("Location:../index.php"));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +30,10 @@
 </head>
 <body>
     <div class="container">
-        <h5 class="text-danger"><h5><center>Penyataan Pulang Atas Permintaan Sendiri No. <?=$nopernyataan;?></center></h5><br/>
+        <h5 class="text-dark"><h5><center>Pernyataan Pulang Atas Permintaan Sendiri No. <?=$nopernyataan;?></center></h5><br/>
         <form method="POST" action="pages/storeImage2.php" onsubmit="return validasiIsi();" enctype=multipart/form-data>
             <input type="hidden" name="nopernyataan" value="<?=$nopernyataan;?>">
-            <h7 class="text-danger">
+            <h7 class="text-dark">
                 <center>
                     Saksi 1 Keluarga<br/>
                     <?=getOne("select surat_pulang_atas_permintaan_sendiri.saksi_keluarga from surat_pulang_atas_permintaan_sendiri where surat_pulang_atas_permintaan_sendiri.no_surat='$nopernyataan'")?>

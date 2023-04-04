@@ -34,7 +34,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
-import kepegawaian.DlgCariPetugas;
+import kepegawaian.DlgCariPegawai;
 
 
 /**
@@ -49,7 +49,7 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i=0;
-    private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
+    private DlgCariPegawai petugas=new DlgCariPegawai(null,false);
     private String finger=""; 
     private StringBuilder htmlContent;
     
@@ -858,7 +858,7 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
         jLabel53.setBounds(10, 70, 180, 23);
 
         TglAsuhan.setForeground(new java.awt.Color(50, 70, 50));
-        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2021 15:25:13" }));
+        TglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2023 07:26:36" }));
         TglAsuhan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsuhan.setName("TglAsuhan"); // NOI18N
         TglAsuhan.setOpaque(false);
@@ -1244,7 +1244,6 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
         PanelWall1.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
         PanelWall1.setPreferredSize(new java.awt.Dimension(200, 200));
         PanelWall1.setRound(false);
-        PanelWall1.setWarna(new java.awt.Color(110, 110, 110));
         PanelWall1.setLayout(null);
         FormInput.add(PanelWall1);
         PanelWall1.setBounds(55, 570, 290, 243);
@@ -1473,9 +1472,8 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
 
         Penunjang.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Penunjang.setColumns(20);
-        Penunjang.setRows(5);
+        Penunjang.setRows(40);
         Penunjang.setName("Penunjang"); // NOI18N
-        Penunjang.setPreferredSize(new java.awt.Dimension(102, 52));
         Penunjang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PenunjangKeyPressed(evt);
@@ -1504,9 +1502,8 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
 
         Diagnosis.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Diagnosis.setColumns(20);
-        Diagnosis.setRows(5);
+        Diagnosis.setRows(40);
         Diagnosis.setName("Diagnosis"); // NOI18N
-        Diagnosis.setPreferredSize(new java.awt.Dimension(102, 52));
         Diagnosis.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 DiagnosisKeyPressed(evt);
@@ -1535,9 +1532,8 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
 
         Rencana.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Rencana.setColumns(20);
-        Rencana.setRows(5);
+        Rencana.setRows(40);
         Rencana.setName("Rencana"); // NOI18N
-        Rencana.setPreferredSize(new java.awt.Dimension(102, 52));
         Rencana.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 RencanaKeyPressed(evt);
@@ -1595,7 +1591,7 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1609,7 +1605,7 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2090,7 +2086,6 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
 }//GEN-LAST:event_tbObatKeyPressed
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
-        petugas.isCek();
         petugas.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
         petugas.setLocationRelativeTo(internalFrame1);
         petugas.setAlwaysOnTop(false);
@@ -2695,24 +2690,20 @@ public final class RMPenilaianFisioterapi extends javax.swing.JDialog {
             KdPetugas.setEditable(false);
             BtnDokter.setEnabled(false);
             KdPetugas.setText(akses.getkode());
-            Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?", NmPetugas,KdPetugas.getText());
-            if(NmPetugas.getText().equals("")){
-                KdPetugas.setText("");
-                JOptionPane.showMessageDialog(null,"User login bukan petugas...!!");
-            }
+            Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?", NmPetugas,KdPetugas.getText());
         }            
     }
 
     public void setTampil(){
        TabRawat.setSelectedIndex(1);
-       tampil();
     }
     
     private void hapus() {
         if(Sequel.queryu2tf("delete from penilaian_fisioterapi where no_rawat=?",1,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
-            tampil();
+            tabMode.removeRow(tbObat.getSelectedRow());
+            LCount.setText(""+tabMode.getRowCount());
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");
         }

@@ -1754,8 +1754,6 @@ public final class RMPenilaianPsikologi extends javax.swing.JDialog {
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TglLahir.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
             Jk.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString()); 
-            KdPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            NmPetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
             Dikirimdari.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
             TujuanPemeriksaan.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
             Informasi.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
@@ -1833,14 +1831,14 @@ public final class RMPenilaianPsikologi extends javax.swing.JDialog {
     
     public void setTampil(){
        TabRawat.setSelectedIndex(1);
-       tampil();
     }
 
     private void hapus() {
         if(Sequel.queryu2tf("delete from penilaian_psikologi where no_rawat=?",1,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
-            tampil();
+            tabMode.removeRow(tbObat.getSelectedRow());
+            LCount.setText(""+tabMode.getRowCount());
             TabRawat.setSelectedIndex(1);
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");

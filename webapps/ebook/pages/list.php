@@ -1,6 +1,8 @@
 <?php
     if(strpos($_SERVER['REQUEST_URI'],"pages")){
-        exit(header("Location:../index.php"));
+        if(!strpos($_SERVER['REQUEST_URI'],"pages/upload/")){
+            exit(header("Location:../index.php"));
+        }
     }
 ?>
 <div id="post">        
@@ -8,7 +10,7 @@
         <?php
             $action             = isset($_GET['action'])?$_GET['action']:NULL;
             $keyword            = validTeks(str_replace("_"," ",isset($_GET['keyword']))?str_replace("_"," ",$_GET['keyword']):NULL);
-            $kode_ebook         = validTeks(str_replace("_"," ",isset($_GET['kode_ebook']))?str_replace("_"," ",$_GET['kode_ebook']):NULL);
+            $kode_ebook         = validTeks4((str_replace("_"," ",isset($_GET['kode_ebook']))?str_replace("_"," ",$_GET['kode_ebook']):NULL),10);
             $kode_ebook2        = "";
             $judul_ebook        = "";
             $jml_halaman        = "";
@@ -54,7 +56,7 @@
             <tr class="isi2">
                 <td width="15%" >Kode Ebook</td>
                 <td width="35%">
-                    :&nbsp;<input name="kode_ebook" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi1'));" type=text id="TxtIsi1" class="inputbox" value="<?php echo $kode_ebook;?>" size="20" maxlength="10" pattern="[a-zA-Z0-9-]{1,10}" title=" a-zA-Z0-9- (Maksimal 10 karakter)" autocomplete="off" required autofocus>
+                    :&nbsp;<input name="kode_ebook" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi1'));" type=text id="TxtIsi1" class="inputbox" value="<?php echo $kode_ebook;?>" size="20" maxlength="10" pattern="[a-zA-Z 0-9-]{1,10}" title=" a-zA-Z 0-9- (Maksimal 10 karakter)" autocomplete="off" required autofocus>
                     <span id="MsgIsi1" style="color:#CC0000; font-size:10px;"></span>
                 </td>
                 <td width="15%" >Pengarang</td>
@@ -77,7 +79,7 @@
             <tr class="isi2">
                 <td width="15%" >Judul Ebook</td>
                 <td width="35%">
-                    :&nbsp;<input name="judul_ebook" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi2'));" type=text id="TxtIsi2" class="inputbox" value="<?php echo $judul_ebook;?>" size="50" maxlength="200" pattern="[a-zA-Z0-9-]{1,200}" title=" a-zA-Z0-9- (Maksimal 200 karakter)" autocomplete="off" required>
+                    :&nbsp;<input name="judul_ebook" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi2'));" type=text id="TxtIsi2" class="inputbox" value="<?php echo $judul_ebook;?>" size="50" maxlength="200" pattern="[a-zA-Z 0-9-]{1,200}" title=" a-zA-Z 0-9- (Maksimal 200 karakter)" autocomplete="off" required>
                     <span id="MsgIsi2" style="color:#CC0000; font-size:10px;"></span>
                 </td>
                 <td width="15%" >Tahun Terbit</td>
@@ -151,9 +153,9 @@
                 <td width="15%" >File Ebook</td>
                 <td width="35%">
                 <?php if($action == "UBAH"){ ?>
-                        :&nbsp;<input name="berkas" class="text" type="file" class="inputbox" value="<?php echo isset($berkas)?$berkas:NULL;?>" size="40" maxlength="200">
+                        :&nbsp;<input name="berkas" class="text" type="file" class="inputbox" value="<?php echo isset($berkas)?$berkas:NULL;?>" size="40" maxlength="200" accept="application/pdf">
                 <?php }else{ ?>
-                        :&nbsp;<input name="berkas" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi9'));" type="file" id="TxtIsi9" class="inputbox" value="<?php echo isset($berkas)?$berkas:NULL;?>" size="40" maxlength="200">
+                        :&nbsp;<input name="berkas" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi9'));" type="file" id="TxtIsi9" class="inputbox" value="<?php echo isset($berkas)?$berkas:NULL;?>" size="40" maxlength="200" accept="application/pdf">
                         <span id="MsgIsi9" style="color:#CC0000; font-size:10px;"></span>
                 <?php } ?>
                 </td>
@@ -163,18 +165,16 @@
         <?php
             $BtnSimpan=isset($_POST['BtnSimpan'])?$_POST['BtnSimpan']:NULL;
             if (isset($BtnSimpan)) {
-                $kode_ebook         = validTeks(trim($_POST['kode_ebook']));
-                $kode_ebook2        = validTeks(trim($_POST['kode_ebook2']));
-                $judul_ebook        = validTeks(trim($_POST['judul_ebook']));
-                $jml_halaman        = validTeks(trim($_POST['jml_halaman']));
-                $kode_penerbit      = validTeks(trim($_POST['kode_penerbit']));
-                $kode_pengarang     = validTeks(trim($_POST['kode_pengarang']));
-                $id_jenis           = validTeks(trim($_POST['id_jenis']));
-                $id_kategori        = validTeks(trim($_POST['id_kategori']));
-                $thn_terbit         = validTeks(trim($_POST['thn_terbit']));
+                $kode_ebook         = validTeks4(trim($_POST['kode_ebook']),10);
+                $kode_ebook2        = validTeks4(trim($_POST['kode_ebook2']),10);
+                $judul_ebook        = validTeks4(trim($_POST['judul_ebook']),200);
+                $jml_halaman        = validTeks4(trim($_POST['jml_halaman']),5);
+                $kode_penerbit      = validTeks4(trim($_POST['kode_penerbit']),10);
+                $kode_pengarang     = validTeks4(trim($_POST['kode_pengarang']),7);
+                $id_jenis           = validTeks4(trim($_POST['id_jenis']),5);
+                $id_kategori        = validTeks4(trim($_POST['id_kategori']),5);
+                $thn_terbit         = validTeks4(trim($_POST['thn_terbit']),4);
                 $berkas             = validTeks(str_replace(" ","_","pages/upload/".$_FILES['berkas']['name']));
-                move_uploaded_file($_FILES['berkas']['tmp_name'],$berkas);
-
                 if ((!empty($kode_ebook))&&(!empty($judul_ebook))&&(!empty($jml_halaman))&&(!empty($kode_penerbit))&&(!empty($kode_pengarang))&&(!empty($id_jenis))&&(!empty($id_kategori))&&(!empty($berkas))) {
                     switch($action) {
                         case "TAMBAH":
@@ -275,7 +275,7 @@
     <?php
         if ($action=="HAPUS") {
             unlink($_GET['berkas']);
-            Hapus(" perpustakaan_ebook ","  kode_ebook='".validTeks($_GET['kode_ebook'])."'","?act=List&action=TAMBAH");
+            Hapus(" perpustakaan_ebook ","  kode_ebook='".validTeks4($_GET['kode_ebook'],10)."'","?act=List&action=TAMBAH");
         }
         
         echo("<table width='100%' border='0' align='center' cellpadding='0' cellspacing='0' class='tbl_form'>

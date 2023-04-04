@@ -1554,8 +1554,8 @@ private void btnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             kdptg.setText(akses.getkode());
             BtnSimpan.setEnabled(akses.getsurat_pemesanan_non_medis());
             BtnTambah.setEnabled(akses.getipsrs_barang());
-            Sequel.cariIsi("select nama from pegawai where nik=?", nmptg,kdptg.getText());
-            Sequel.cariIsi("select departemen from pegawai where nik=?",Departemen,kdptg.getText());
+            Sequel.cariIsi("select pegawai.nama from pegawai where pegawai.nik=?", nmptg,kdptg.getText());
+            Sequel.cariIsi("select pegawai.departemen from pegawai where pegawai.nik=?",Departemen,kdptg.getText());
         }        
     }
     

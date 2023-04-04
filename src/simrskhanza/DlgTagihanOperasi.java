@@ -2709,7 +2709,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }else if(kddrumum.getText().trim().equals("")||nmdrumum.getText().trim().equals("")){
             Valid.textKosong(kddrumum,"dr Umum");
         }else if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis...!!!!");
+            JOptionPane.showMessageDialog(null,"Maaf, pilihan operasi kosong...!!!!");
             TCari.requestFocus();
         }else if(jml==0){
             JOptionPane.showMessageDialog(null,"Maaf, silahkan pilih operasi...!!!!");
@@ -3589,6 +3589,34 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
         tampil();
         tampil2();
+    }
+    
+    public void setNoRm(String norm,String nama,String posisi,String KodeOperator,String NamaOperator){
+        TNoRw.setText(norm);
+        TPasien.setText(nama);
+        this.status=posisi;
+        this.kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",norm);        
+        if(status.equals("Ranap")){
+            norawatibu=Sequel.cariIsi("select ranap_gabung.no_rawat from ranap_gabung where ranap_gabung.no_rawat2=?",TNoRw.getText());
+        
+            if(!norawatibu.equals("")){
+                kelas=Sequel.cariIsi(
+                    "select kamar.kelas from kamar inner join kamar_inap "+
+                    "on kamar.kd_kamar=kamar_inap.kd_kamar where no_rawat=? "+
+                    "and stts_pulang='-' order by STR_TO_DATE(concat(kamar_inap.tgl_masuk,' ',jam_masuk),'%Y-%m-%d %H:%i:%s') desc limit 1",norawatibu);
+            }else{
+                kelas=Sequel.cariIsi(
+                    "select kamar.kelas from kamar inner join kamar_inap "+
+                    "on kamar.kd_kamar=kamar_inap.kd_kamar where no_rawat=? "+
+                    "and stts_pulang='-' order by STR_TO_DATE(concat(kamar_inap.tgl_masuk,' ',jam_masuk),'%Y-%m-%d %H:%i:%s') desc limit 1",TNoRw.getText());
+            } 
+        }else if(status.equals("Ralan")){
+            kelas="Rawat Jalan";
+        }
+        tampil();
+        tampil2();
+        kdoperator1.setText(KodeOperator);
+        nmoperator1.setText(NamaOperator);
     }
     
     

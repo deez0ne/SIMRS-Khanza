@@ -1109,7 +1109,7 @@ public final class DlgResepObat extends javax.swing.JDialog {
         PanelAccor.setPreferredSize(new java.awt.Dimension(445, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout(1, 1));
 
-        ChkAccor.setBackground(new java.awt.Color(255, 250, 248));
+        ChkAccor.setBackground(new java.awt.Color(255,250,250));
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
         ChkAccor.setSelected(true);
         ChkAccor.setFocusable(false);
@@ -1544,7 +1544,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("propinsirs",akses.getpropinsirs());
             param.put("emailrs",akses.getemailrs());
             param.put("kontakrs",akses.getkontakrs());
-            param.put("penanggung",Sequel.cariIsi("select png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText())));               
+            param.put("penanggung",Sequel.cariIsi("select penjab.png_jawab from penjab where penjab.kd_pj=?",Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText())));               
             param.put("propinsirs",akses.getpropinsirs());
             param.put("tanggal",Valid.SetTgl(DTPBeri.getSelectedItem()+""));
             param.put("norawat",TNoRw.getText());
@@ -1929,7 +1929,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("propinsirs",akses.getpropinsirs());
             param.put("emailrs",akses.getemailrs());
             param.put("kontakrs",akses.getkontakrs());
-            param.put("penanggung",Sequel.cariIsi("select png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText())));               
+            param.put("penanggung",Sequel.cariIsi("select penjab.png_jawab from penjab where penjab.kd_pj=?",Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText())));               
             param.put("propinsirs",akses.getpropinsirs());
             param.put("tanggal",Valid.SetTgl(DTPBeri.getSelectedItem()+""));
             param.put("norawat",TNoRw.getText());
@@ -2004,7 +2004,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("propinsirs",akses.getpropinsirs());
             param.put("emailrs",akses.getemailrs());
             param.put("kontakrs",akses.getkontakrs());
-            param.put("penanggung",Sequel.cariIsi("select png_jawab from penjab where kd_pj=?",Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText())));               
+            param.put("penanggung",Sequel.cariIsi("select penjab.png_jawab from penjab where penjab.kd_pj=?",Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText())));               
             param.put("propinsirs",akses.getpropinsirs());
             param.put("tanggal",Valid.SetTgl(DTPBeri.getSelectedItem()+""));
             param.put("norawat",TNoRw.getText());
@@ -2012,7 +2012,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("norm",TNoRm.getText());
             param.put("peresep",NmDokter.getText());
             param.put("noresep",NoResep.getText());
-            param.put("poli",Sequel.cariIsi("select nm_poli from poliklinik where kd_poli=?",Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat=?",TNoRw.getText())));   
+            param.put("poli",Sequel.cariIsi("select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli=?",Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat=?",TNoRw.getText())));   
             param.put("jam",cmbJam.getSelectedItem()+":"+cmbMnt.getSelectedItem()+":"+cmbDtk.getSelectedItem());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             
@@ -2720,9 +2720,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                                         "<td valign='middle' align='center' colspan='3'>TELAAH RESEP</td>"+
                                     "</tr>"+
                                     "<tr class='isi'>"+
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>"+
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center' width='75%'>Penilaian</td>"+
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center' width='20%'>Ya/Tidak</td>"+
+                                        "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%'>No</td>"+
+                                        "<td valign='middle' bgcolor='#FFFAFA' align='center' width='75%'>Penilaian</td>"+
+                                        "<td valign='middle' bgcolor='#FFFAFA' align='center' width='20%'>Ya/Tidak</td>"+
                                     "</tr>"+
                                     "<tr class='isi'>"+
                                         "<td valign='middle' align='center'>1</td>"+
@@ -2800,9 +2800,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                                         "<td valign='middle' align='center' colspan='3'><br>TELAAH OBAT ( VERIFIKASI OBAT )</td>"+
                                     "</tr>"+
                                     "<tr class='isi'>"+
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center' width='5%'>No</td>"+
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center' width='75%'>Penilaian</td>"+
-                                        "<td valign='middle' bgcolor='#FFFAF8' align='center' width='20%'>Ya/Tidak</td>"+
+                                        "<td valign='middle' bgcolor='#FFFAFA' align='center' width='5%'>No</td>"+
+                                        "<td valign='middle' bgcolor='#FFFAFA' align='center' width='75%'>Penilaian</td>"+
+                                        "<td valign='middle' bgcolor='#FFFAFA' align='center' width='20%'>Ya/Tidak</td>"+
                                     "</tr>"+
                                     "<tr class='isi'>"+
                                         "<td valign='middle' align='center'>1</td>"+

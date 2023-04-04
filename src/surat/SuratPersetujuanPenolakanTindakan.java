@@ -1,5 +1,5 @@
 /*
- * Kontribusi dari M. Syukur RS. Jiwa Prov Sultra
+ * By Mas Khanza
  */
 
 
@@ -1289,7 +1289,7 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
         PanelAccor.setPreferredSize(new java.awt.Dimension(430, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout(1, 1));
 
-        ChkAccor.setBackground(new java.awt.Color(255, 250, 248));
+        ChkAccor.setBackground(new java.awt.Color(255,250,250));
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/kiri.png"))); // NOI18N
         ChkAccor.setSelected(true);
         ChkAccor.setFocusable(false);
@@ -2504,7 +2504,6 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
     
     public void setTampil(){
        TabRawat.setSelectedIndex(1);
-       tampil();
     }
 
     private void hapus() {
@@ -2537,12 +2536,12 @@ public final class SuratPersetujuanPenolakanTindakan extends javax.swing.JDialog
         if(ChkAccor.isSelected()==true){
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(430,HEIGHT));
-            TabData.setVisible(true);  
+            FormPhoto.setVisible(true);  
             ChkAccor.setVisible(true);
         }else if(ChkAccor.isSelected()==false){    
             ChkAccor.setVisible(false);
             PanelAccor.setPreferredSize(new Dimension(15,HEIGHT));
-            TabData.setVisible(false);  
+            FormPhoto.setVisible(false);  
             ChkAccor.setVisible(true);
         }
     }

@@ -3,12 +3,6 @@
  * and open the template in the editor.
  */
 
-/*
- * DlgDataSkriningGiziLanjut.java
- * Kontribusi Haris Rochmatullah RS Bhayangkara Nganjuk
- * Created on 11 November 2020, 20:19:56
- */
-
 package rekammedis;
 
 import fungsi.WarnaTable;
@@ -1408,7 +1402,8 @@ public final class RMDataCatatanObservasiIGD extends javax.swing.JDialog {
         if(Sequel.queryu2tf("delete from catatan_observasi_igd where tgl_perawatan=? and jam_rawat=? and no_rawat=?",3,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),6).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),7).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
-            tampil();
+            tabMode.removeRow(tbObat.getSelectedRow());
+            LCount.setText(""+tabMode.getRowCount());
             emptTeks();
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");

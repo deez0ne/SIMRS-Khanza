@@ -1,6 +1,8 @@
 <?php
     if(strpos($_SERVER['REQUEST_URI'],"pages")){
-        exit(header("Location:../index.php"));
+        if(!strpos($_SERVER['REQUEST_URI'],"pages/upload/")){
+            exit(header("Location:../index.php"));
+        }
     }
 ?>
 <div id="post">
@@ -9,12 +11,12 @@
             <?php
                 echo "";
                 $action             = isset($_GET['action'])?$_GET['action']:NULL;
-                $no_rawat           = validTeks(isset($_GET['no_rawat'])?$_GET['no_rawat']:NULL);
-                $tanggal            = validTeks(isset($_GET['tanggal'])?$_GET['tanggal']:NULL);
-                $jam                = validTeks(isset($_GET['jam'])?$_GET['jam']:NULL);
-                $kd_jenis_prw       = validTeks(isset($_GET['kd_jenis_prw'])?$_GET['kd_jenis_prw']:NULL);
-                $no_rm              = getOne("select no_rkm_medis from reg_periksa where no_rawat='$no_rawat'");
-                $nama_pasien        = getOne("select nm_pasien from pasien where no_rkm_medis='$no_rm'");
+                $no_rawat           = validTeks4((isset($_GET['no_rawat'])?$_GET['no_rawat']:NULL),20);
+                $tanggal            = validTeks4((isset($_GET['tanggal'])?$_GET['tanggal']:NULL),14);
+                $jam                = validTeks4((isset($_GET['jam'])?$_GET['jam']:NULL),14);
+                $kd_jenis_prw       = validTeks4((isset($_GET['kd_jenis_prw'])?$_GET['kd_jenis_prw']:NULL),20);
+                $no_rm              = getOne("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat='$no_rawat'");
+                $nama_pasien        = getOne("select pasien.nm_pasien from pasien where pasien.no_rkm_medis='$no_rm'");
                 $nm_perawatan       = getOne("select nm_perawatan from jns_perawatan_lab where kd_jenis_prw='$kd_jenis_prw'");
                 echo "<input type=hidden name=no_rawat value=$no_rawat>
                       <input type=hidden name=tanggal value=$tanggal>
@@ -43,7 +45,7 @@
                     <tr class="head">
                         <td width="31%" >File/Gambar</td><td width="">:</td>
                         <td width="67%">
-                            <input name="gambar" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi1'));" type=file id="TxtIsi1" value="<?php echo $gambar;?>" size="50" maxlength="500" />
+                            <input name="gambar" class="text" onkeydown="setDefault(this, document.getElementById('MsgIsi1'));" type=file id="TxtIsi1" value="<?php echo $gambar;?>" size="50" maxlength="500" accept="image/jpeg,image/jpg"/>
                             <span id="MsgIsi1" style="color:#CC0000; font-size:10px;"></span>
                         </td>
                     </tr>        
@@ -53,19 +55,23 @@
             <?php
                 $BtnSimpan=isset($_POST['BtnSimpan'])?$_POST['BtnSimpan']:NULL;
                 if (isset($BtnSimpan)) {
-                    $no_rawat     = validTeks(trim($_POST['no_rawat']));
-                    $tanggal      = validTeks(trim($_POST['tanggal']));
-                    $jam          = validTeks(trim($_POST['jam']));
-                    $kd_jenis_prw = validTeks(trim($_POST['kd_jenis_prw']));
+                    $no_rawat     = validTeks4(trim($_POST['no_rawat']),20);
+                    $tanggal      = validTeks4(trim($_POST['tanggal']),14);
+                    $jam          = validTeks4(trim($_POST['jam']),14);
+                    $kd_jenis_prw = validTeks4(trim($_POST['kd_jenis_prw']),20);
                     $gambar       = validTeks(str_replace(" ","_","pages/upload/".$_FILES['gambar']['name']));
-                    move_uploaded_file($_FILES['gambar']['tmp_name'],$gambar);
-                    
-                    if ((!empty($no_rawat))&&(!empty($kd_jenis_prw))&&(!empty($gambar))) {
-                        Tambah(" detail_periksa_labpa_gambar "," '$no_rawat','$kd_jenis_prw','$tanggal','$jam','$gambar'", " Gambar Lab PA " );
-                        echo"<meta http-equiv='refresh' content='1;URL=?act=List&no_rawat=$no_rawat&tanggal=$tanggal&jam=$jam&kd_jenis_prw=$kd_jenis_prw'>";                              
-                    }else if ((empty($no_rawat))||(empty($gambar))||(empty($kd_jenis_prw))){
-                        echo 'Semua field harus isi..!!!';
+                    if((strtolower(substr($gambar,-3))=="jpg")||(strtolower(substr($gambar,-4))=="jpeg")){
+                        if ((!empty($no_rawat))&&(!empty($kd_jenis_prw))&&(!empty($gambar))) {
+                            move_uploaded_file($_FILES['gambar']['tmp_name'],$gambar);
+                            Tambah(" detail_periksa_labpa_gambar "," '$no_rawat','$kd_jenis_prw','$tanggal','$jam','$gambar'", " Gambar Lab PA " );
+                            echo"<meta http-equiv='refresh' content='1;URL=?act=List&no_rawat=$no_rawat&tanggal=$tanggal&jam=$jam&kd_jenis_prw=$kd_jenis_prw'>";                              
+                        }else if ((empty($no_rawat))||(empty($gambar))||(empty($kd_jenis_prw))){
+                            echo 'Semua field harus isi..!!!';
+                        }
+                    }else{
+                        echo "Berkas harus JPEG/JPG";
                     }
+                        
                 }
             ?>
             <div style="width: 100%; height: 78%; overflow: auto;">
@@ -99,7 +105,7 @@
         <?php
             if ($action=="HAPUS") {
                 unlink($_GET['gambar']);
-                Hapus(" detail_periksa_labpa_gambar "," no_rawat ='".validTeks($_GET['no_rawat'])."' and tgl_periksa ='".validTeks($_GET['tanggal'])."' and jam ='".validTeks($_GET['jam'])."' and photo ='".validTeks($_GET['gambar'])."' and kd_jenis_prw ='".validTeks($_GET['kd_jenis_prw'])."'","?act=List&action=TAMBAH&no_rawat=$no_rawat&tanggal=$tanggal&jam=$jam&kd_jenis_prw=$kd_jenis_prw");
+                Hapus(" detail_periksa_labpa_gambar "," no_rawat ='".validTeks4($_GET['no_rawat'],20)."' and tgl_periksa ='".validTeks4($_GET['tanggal'],14)."' and jam ='".validTeks4($_GET['jam'],14)."' and photo ='".validTeks($_GET['gambar'])."' and kd_jenis_prw ='".validTeks4($_GET['kd_jenis_prw'],20)."'","?act=List&action=TAMBAH&no_rawat=$no_rawat&tanggal=$tanggal&jam=$jam&kd_jenis_prw=$kd_jenis_prw");
             }
         
         ?>

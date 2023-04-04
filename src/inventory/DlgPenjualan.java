@@ -2008,16 +2008,16 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 private void kdgudangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdgudangKeyPressed
         switch (evt.getKeyCode()) {
             case KeyEvent.VK_PAGE_DOWN:
-                Sequel.cariIsi("select bangsal.nm_bangsal from bangsal where bangsal.kd_bangsal=?",nmgudang,kdgudang.getText());
+                nmgudang.setText(bangsal.tampil3(kdgudang.getText())); 
                 tampil();
                 break;
             case KeyEvent.VK_PAGE_UP:
-                Sequel.cariIsi("select bangsal.nm_bangsal from bangsal where bangsal.kd_bangsal=?",nmgudang,kdgudang.getText());
+                nmgudang.setText(bangsal.tampil3(kdgudang.getText())); 
                 tampil();
                 kdptg.requestFocus();
                 break;
             case KeyEvent.VK_ENTER:
-                Sequel.cariIsi("select bangsal.nm_bangsal from bangsal where bangsal.kd_bangsal=?",nmgudang,kdgudang.getText());
+                nmgudang.setText(bangsal.tampil3(kdgudang.getText())); 
                 tampil();
                 BtnSimpan.requestFocus();
                 break;
@@ -3814,6 +3814,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(rs.next()){
                             tabMode.setValueAt(rs.getString("no_faktur"), tbObat.getSelectedRow(),17);
                             tabMode.setValueAt(rs.getString("tgl_kadaluarsa"), tbObat.getSelectedRow(),18);
+                            tabMode.setValueAt(rs.getDouble(hppfarmasi), tbObat.getSelectedRow(),15);
                             if(aktifkanbatch.equals("yes")){
                                 if(Jenisjual.getSelectedItem().equals("Karyawan")){
                                     tabMode.setValueAt(rs.getDouble("karyawan"), tbObat.getSelectedRow(),5);
@@ -3921,6 +3922,7 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         if(rs.next()){
                             tbDetailObatRacikan.setValueAt(rs.getString("no_faktur"), tbDetailObatRacikan.getSelectedRow(),19);
                             tbDetailObatRacikan.setValueAt(rs.getString("tgl_kadaluarsa"), tbDetailObatRacikan.getSelectedRow(),20);
+                            tbDetailObatRacikan.setValueAt(rs.getDouble(hppfarmasi), tbDetailObatRacikan.getSelectedRow(),17);
                             if(aktifkanbatch.equals("yes")){
                                 if(Jenisjual.getSelectedItem().equals("Karyawan")){
                                     tbDetailObatRacikan.setValueAt(rs.getDouble("karyawan"), tbDetailObatRacikan.getSelectedRow(),5);

@@ -52,7 +52,6 @@ public final class RMDataSkriningGiziLanjut extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
-    private double ttlskor=0,jmlskor=0;
     private int i=0;    
     private DlgCariPetugas petugas=new DlgCariPetugas(null,false);
     private String finger="";
@@ -1678,7 +1677,8 @@ public final class RMDataSkriningGiziLanjut extends javax.swing.JDialog {
         if(Sequel.queryu2tf("delete from skrining_gizi where tanggal=? and no_rawat=?",2,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),5).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
         })==true){
-            tampil();
+            tabMode.removeRow(tbObat.getSelectedRow());
+            LCount.setText(""+tabMode.getRowCount());
             emptTeks();
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");

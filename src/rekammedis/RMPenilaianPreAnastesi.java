@@ -2367,7 +2367,6 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        TglAsuhan.setDate(new Date());
         Diagnosa.setText("");
         RencanaTindakan.setText("");
         TB.setText("");
@@ -2417,8 +2416,6 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
             TPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
             TglLahir.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
             Jk.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString()); 
-            KdDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            NmDokter.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
             Diagnosa.setText(tbObat.getValueAt(tbObat.getSelectedRow(),9).toString());
             RencanaTindakan.setText(tbObat.getValueAt(tbObat.getSelectedRow(),10).toString());
             TB.setText(tbObat.getValueAt(tbObat.getSelectedRow(),11).toString());
@@ -2517,14 +2514,14 @@ public final class RMPenilaianPreAnastesi extends javax.swing.JDialog {
     
     public void setTampil(){
        TabRawat.setSelectedIndex(1);
-       tampil();
     }
 
     private void hapus() {
         if(Sequel.queryu2tf("delete from penilaian_pre_anestesi where no_rawat=? and tanggal=?",2,new String[]{
             tbObat.getValueAt(tbObat.getSelectedRow(),0).toString(),tbObat.getValueAt(tbObat.getSelectedRow(),7).toString()
         })==true){
-            tampil();
+            tabMode.removeRow(tbObat.getSelectedRow());
+            LCount.setText(""+tabMode.getRowCount());
             TabRawat.setSelectedIndex(1);
         }else{
             JOptionPane.showMessageDialog(null,"Gagal menghapus..!!");
