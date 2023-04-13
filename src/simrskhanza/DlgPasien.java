@@ -3280,6 +3280,7 @@ public class DlgPasien extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
         TabRawat.setForeground(new java.awt.Color(50, 50, 50));
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3365,11 +3366,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(4, 102, 95, 23);
 
-<<<<<<< HEAD
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2022" }));
-=======
         DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-03-2023" }));
->>>>>>> 7388983a461a8c8cd2d43b93a7bdf61723d9c01f
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -3501,11 +3498,7 @@ public class DlgPasien extends javax.swing.JDialog {
         FormInput.add(TKtp);
         TKtp.setBounds(743, 132, 130, 23);
 
-<<<<<<< HEAD
-        DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-08-2022" }));
-=======
         DTPDaftar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-03-2023" }));
->>>>>>> 7388983a461a8c8cd2d43b93a7bdf61723d9c01f
         DTPDaftar.setDisplayFormat("dd-MM-yyyy");
         DTPDaftar.setName("DTPDaftar"); // NOI18N
         DTPDaftar.setOpaque(false);

@@ -57,13 +57,8 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
             pscaripoli,pscarialamat,psdokterralan,psrekening,psbiling;
     private ResultSet rsakunbayar,rstindakan,rsset_tarif,rsbayar,rsreg,rscaripoli,
             rscarialamat,rsdokterralan,rsrekening;
-<<<<<<< HEAD
     private String gtarif="",noorderradiologi="",noorderlaborat="",jmls="",kd_pj="",kd_poli="",poli_ralan="Yes",cara_bayar_ralan="Yes",cara_bayar_lab="Yes",kelas_lab="Yes",
             NoNota="",sqlpscaripoli="select nm_poli from poliklinik where kd_poli=?",
-=======
-    private String noorderradiologi="",noorderlaborat="",jmls="",kd_pj="",kd_poli="",poli_ralan="Yes",cara_bayar_ralan="Yes",cara_bayar_lab="Yes",kelas_lab="Yes",
-            NoNota="",sqlpscaripoli="select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli=?",
->>>>>>> 7388983a461a8c8cd2d43b93a7bdf61723d9c01f
             sqlpscarialamat="select concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) from pasien "+
                         "inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel "+
                         "and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab "+
