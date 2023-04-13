@@ -57,8 +57,13 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
             pscaripoli,pscarialamat,psdokterralan,psrekening,psbiling;
     private ResultSet rsakunbayar,rstindakan,rsset_tarif,rsbayar,rsreg,rscaripoli,
             rscarialamat,rsdokterralan,rsrekening;
+<<<<<<< HEAD
+    private String gtarif="",noorderradiologi="",noorderlaborat="",jmls="",kd_pj="",kd_poli="",poli_ralan="Yes",cara_bayar_ralan="Yes",cara_bayar_lab="Yes",kelas_lab="Yes",
+            NoNota="",sqlpscaripoli="select nm_poli from poliklinik where kd_poli=?",
+=======
     private String noorderradiologi="",noorderlaborat="",jmls="",kd_pj="",kd_poli="",poli_ralan="Yes",cara_bayar_ralan="Yes",cara_bayar_lab="Yes",kelas_lab="Yes",
             NoNota="",sqlpscaripoli="select poliklinik.nm_poli from poliklinik where poliklinik.kd_poli=?",
+>>>>>>> 7388983a461a8c8cd2d43b93a7bdf61723d9c01f
             sqlpscarialamat="select concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) from pasien "+
                         "inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel "+
                         "and pasien.kd_kec=kecamatan.kd_kec and pasien.kd_kab=kabupaten.kd_kab "+
@@ -2946,7 +2951,7 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
 
                 if(i>0){                       
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    kd_pj=Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText());
+                    kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText());
                     if(i==1){
                         Valid.panggilUrl("billing/LaporanBilling9.php?petugas="+akses.getkode().replaceAll(" ","_")+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==2){
@@ -3464,7 +3469,11 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
 
     public void setNoRm(String norwt,String kodedokter, String namadokter,String KodePoli) {
         TNoRw.setText(norwt);
-        this.kd_pj=Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",norwt);
+        this.kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",norwt);
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan where kd_pj=?",this.kd_pj);
+        if(gtarif.equals("")){
+        this.kd_pj="001";    
+        }
         this.kd_poli=KodePoli;
         KdDok.setText(kodedokter);
         TDokter.setText(namadokter);
@@ -4515,6 +4524,10 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ? "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_radiologi where kd_pj=?",kd_pj);
+        if(gtarif.equals("")){
+        kd_pj="001";    
+        }
                     try {
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"Rawat Jalan");
@@ -4767,6 +4780,10 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and jns_perawatan_lab.nm_perawatan like ? "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
                     try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",kd_pj);
+        if(gtarif.equals("")){
+        kd_pj="001";    
+        }
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"%"+TCariTindakan.getText().trim()+"%");
                         pstindakan.setString(3,kd_pj.trim());
@@ -4833,6 +4850,10 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.nm_perawatan like ? "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
                     try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",kd_pj);
+        if(gtarif.equals("")){
+        kd_pj="001";    
+        }
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"Rawat Jalan");
                         pstindakan.setString(3,"%"+TCariTindakan.getText().trim()+"%");

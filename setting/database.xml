@@ -2,13 +2,16 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>KhanzaHMS</comment> 
-    <entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="HOST251">gkuO5iBLvMy7EA+91lRrEQ==</entry>
+	<entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+	<entry key="HOSThama">GY0GVPcJ9oKfHuORQUU3kA==</entry>
     <entry key="DATABASE">AZHNccBwSmSho84f+X8GyQ==</entry>
     <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
-    <entry key="USER">kMR3WfAwUK6MbhCyydxa0g==</entry>
-    <entry key="PAS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+	<entry key="PORT3307">gHLiHSz7DLUa9nGO8KPbDQ==</entry>
+    <entry key="USER">JQaP+LYE5t2ClrKPgi1wgQ==</entry>
+    <entry key="PAS">24Zjleh/NddAF+cWIONttA==</entry>
     <entry key="CARICEPAT">nonaktif</entry>
-    <entry key="HOSTHYBRIDWEB">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="HOSTHYBRIDWEB">gkuO5iBLvMy7EA+91lRrEQ==</entry>
     <entry key="USERHYBRIDWEB">nmXqCKzrz9i8GTZlq7JruQ==</entry>
     <entry key="PASHYBRIDWEB">AsJ/0/gCnYnD+gK4fw9uKA==</entry>
     <entry key="HYBRIDWEB">webapps</entry>
@@ -31,10 +34,10 @@
     <entry key="ALARMPENGADUANPASIEN">yes</entry>
     <entry key="ALARMPERMINTAANRANAP">yes</entry>
     <entry key="MENUTRANSPARAN">yes</entry>
-    <entry key="URLAPIBPJS">https://apijkn.bpjs-kesehatan.go.id/vclaim-rest</entry>
-    <entry key="SECRETKEYAPIBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="CONSIDAPIBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-    <entry key="USERKEYAPIBPJS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
+    <entry key="URLAPIBPJS">https://apijkn-dev.bpjs-kesehatan.go.id/vclaim-rest-dev</entry>
+    <entry key="SECRETKEYAPIBPJS">1Yzn4t3pOpSL9Mn3+kNCQw==</entry>
+    <entry key="CONSIDAPIBPJS">v3T1zRosOHd7zwKXxkyrEQ==</entry>
+    <entry key="USERKEYAPIBPJS">RNV9EtaH16CJ5B6k9JDw9z3ncIAA6h5YrqXWheYxykFOZNOds2n9RmHWD9CMyMAR</entry>
     <entry key="DIAGNOSARUJUKANMASUKAPIBPJS">no</entry>
     <entry key="URLAPIAPLICARE">https://new-api.bpjs-kesehatan.go.id/aplicaresws</entry>
     <entry key="SECRETKEYAPIAPLICARE">l4nh5eVYrLAER/I2A4b3Tw==</entry>

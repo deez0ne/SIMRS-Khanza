@@ -67,7 +67,7 @@ public final class DlgPeriksaLaboratoriumMB extends javax.swing.JDialog {
     private double ttl=0,item=0;
     private boolean sukses=false;
     private double ttljmdokter=0,ttljmpetugas=0,ttlkso=0,ttlpendapatan=0,ttlbhp=0,ttljasasarana=0,ttljmperujuk=0,ttlmenejemen=0;
-    private String Suspen_Piutang_Laborat_Ranap="",Laborat_Ranap="",Beban_Jasa_Medik_Dokter_Laborat_Ranap="",Utang_Jasa_Medik_Dokter_Laborat_Ranap="",
+    private String gtarif="",Suspen_Piutang_Laborat_Ranap="",Laborat_Ranap="",Beban_Jasa_Medik_Dokter_Laborat_Ranap="",Utang_Jasa_Medik_Dokter_Laborat_Ranap="",
             Beban_Jasa_Medik_Petugas_Laborat_Ranap="",Utang_Jasa_Medik_Petugas_Laborat_Ranap="",Beban_Kso_Laborat_Ranap="",Utang_Kso_Laborat_Ranap="",
             HPP_Persediaan_Laborat_Rawat_inap="",Persediaan_BHP_Laborat_Rawat_Inap="",Beban_Jasa_Sarana_Laborat_Ranap="",Utang_Jasa_Sarana_Laborat_Ranap="",
             Beban_Jasa_Perujuk_Laborat_Ranap="",Utang_Jasa_Perujuk_Laborat_Ranap="",Beban_Jasa_Menejemen_Laborat_Ranap="",Utang_Jasa_Menejemen_Laborat_Ranap="",
@@ -2212,6 +2212,10 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     " jns_perawatan_lab.kategori='MB' and jns_perawatan_lab.status='1' and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.nm_perawatan like ?  "+
                     "order by jns_perawatan_lab.kd_jenis_prw");
             } 
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",Penjab.getText().trim());
+        if(gtarif.equals("")){
+        Penjab.setText("001"); 
+        }
             try {
                 if(cara_bayar_lab.equals("Yes")&&kelas_lab.equals("No")){
                     pstindakan.setString(1,Penjab.getText().trim());

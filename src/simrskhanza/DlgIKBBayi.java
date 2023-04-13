@@ -61,7 +61,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
             nmayah="",alamatayah="",kerjaayah="",noskl="",pnlgnama="",tindaklhr="",
             bpjsibu="",bpjsayah="",notlp="",bpjsby="",nikplpr="",nmplpr="",almtplpr="",
             krjplpr="",niks1="",nms1="",almts1="",krjs1="",niks2="",nms2="",almts2="",
-            krjs2="",umribu="",umrayah="",umrplpr="",umrs1="",umrs2="";
+            krjs2="",umribu="",umrayah="",umrplpr="",umrs1="",umrs2="",finger="";
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -3764,6 +3764,8 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             param.put("emailrs",akses.getemailrs());
             param.put("logo",Sequel.cariGambar("select setting.logo from setting"));
             param.put("logo2",Sequel.cariGambar("select setting.logo from setting"));
+            finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",KdPenolong.getText());
+            param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+NmPenolong.getText()+"\nID "+(finger.equals("")?KdPenolong.getText():finger)+"\n"+LocalDate.now()); 
             Valid.MyReportqry("rptSKL2.jasper","report","::[ Surat Kelahiran Bayi ]::",
                 "select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, "+
                 "pasien.tgl_lahir,pasien_bayi.jam_lahir, pasien.umur, "+

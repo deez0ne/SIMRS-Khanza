@@ -53,7 +53,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
     private String kd_pj="",kd_poli="",kd_dokter="",poli_ralan="Yes", cara_bayar_ralan="Yes",norm="";    
     private double[] jumlah,harga,stok,eb,tsl,beli;
     private String[] kodebarang,namabarang,kodesatuan,letakbarang,namajenis,nobatch,nofaktur;
-    private String bangsal="",Suspen_Piutang_Obat_Ralan="",Obat_Ralan="",HPP_Obat_Rawat_Jalan="",Persediaan_Obat_Rawat_Jalan="",
+    private String gtarif="",bangsal="",Suspen_Piutang_Obat_Ralan="",Obat_Ralan="",HPP_Obat_Rawat_Jalan="",Persediaan_Obat_Rawat_Jalan="",
             Suspen_Piutang_Tindakan_Ralan="",Tindakan_Ralan="",Beban_Jasa_Medik_Dokter_Tindakan_Ralan="",Utang_Jasa_Medik_Dokter_Tindakan_Ralan="",
             Beban_Jasa_Medik_Paramedis_Tindakan_Ralan="",Utang_Jasa_Medik_Paramedis_Tindakan_Ralan="",Beban_KSO_Tindakan_Ralan="",Utang_KSO_Tindakan_Ralan="",
             Beban_Jasa_Sarana_Tindakan_Ralan="",Utang_Jasa_Sarana_Tindakan_Ralan="",HPP_BHP_Tindakan_Ralan="",Persediaan_BHP_Tindakan_Ralan="",
@@ -1119,6 +1119,10 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
                     " jns_perawatan.status='1' and jns_perawatan.nm_perawatan like ? or "+
                     " jns_perawatan.status='1' and kategori_perawatan.nm_kategori like ? order by jns_perawatan.nm_perawatan "); 
             try {
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan where kd_pj=?",this.kd_pj);
+        if(gtarif.equals("")){
+        this.kd_pj="001";    
+        }
                 if(poli_ralan.equals("Yes")&&cara_bayar_ralan.equals("Yes")){
                     pstindakan.setString(1,kd_pj.trim());
                     pstindakan.setString(2,kd_poli.trim());

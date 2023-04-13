@@ -44,6 +44,7 @@ import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.view.JasperViewer;
 import uz.ncipro.calendar.JDateTimePicker;
 import widget.Button;
@@ -761,7 +762,53 @@ public final class validasi {
             System.out.println(e);
         }
     }
-    
+     public void MyReportqryctk(String reportName,String reportDirName,String judul,String qry,Map parameters){
+        Properties systemProp = System.getProperties();
+
+        // Ambil current dir
+        String currentDir = systemProp.getProperty("user.dir");
+
+        File dir = new File(currentDir);
+
+        File fileRpt;
+        String fullPath = "";
+        if (dir.isDirectory()) {
+            String[] isiDir = dir.list();
+            for (String iDir : isiDir) {
+                fileRpt = new File(currentDir + File.separatorChar + iDir + File.separatorChar + reportDirName + File.separatorChar + reportName);
+                if (fileRpt.isFile()) { // Cek apakah file RptMaster.jrxml ada
+                    fullPath = fileRpt.toString();
+                    System.out.println("Found Report File at : " + fullPath);
+                } // end if
+            } // end for i
+        } // end if
+
+        try {
+            ps=connect.prepareStatement(qry);
+            try {
+                String namafile="./"+reportDirName+"/"+reportName;
+                rs=ps.executeQuery();
+                JRResultSetDataSource rsdt = new JRResultSetDataSource(rs);
+                
+                JasperPrint jasperPrint = JasperFillManager.fillReport(namafile, parameters,rsdt);  
+                JasperPrintManager.printReport(jasperPrint, false);
+            } catch (Exception rptexcpt) {
+                rptexcpt.printStackTrace();
+                System.out.println("Report Can't view because : " + rptexcpt);
+                JOptionPane.showMessageDialog(null,"Report Can't view because : "+ rptexcpt);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+   
     public void MyReportqrypdf(String reportName,String reportDirName,String judul,String qry,Map parameters){
         Properties systemProp = System.getProperties();
 

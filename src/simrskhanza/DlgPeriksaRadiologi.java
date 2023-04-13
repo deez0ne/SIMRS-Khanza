@@ -69,7 +69,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
     private double ttl=0,item=0;
     private boolean sukses=false;
     private double ttljmdokter=0,ttljmpetugas=0,ttlkso=0,ttlpendapatan=0,ttlbhp=0,ttljasasarana=0,ttljmperujuk=0,ttlmenejemen=0;
-    private String Suspen_Piutang_Radiologi_Ranap="",Radiologi_Ranap="",Beban_Jasa_Medik_Dokter_Radiologi_Ranap="",Utang_Jasa_Medik_Dokter_Radiologi_Ranap="",
+    private String gtarif="",Suspen_Piutang_Radiologi_Ranap="",Radiologi_Ranap="",Beban_Jasa_Medik_Dokter_Radiologi_Ranap="",Utang_Jasa_Medik_Dokter_Radiologi_Ranap="",
             Beban_Jasa_Medik_Petugas_Radiologi_Ranap="",Utang_Jasa_Medik_Petugas_Radiologi_Ranap="",Beban_Kso_Radiologi_Ranap="",Utang_Kso_Radiologi_Ranap="",
             HPP_Persediaan_Radiologi_Rawat_Inap="",Persediaan_BHP_Radiologi_Rawat_Inap="",Beban_Jasa_Sarana_Radiologi_Ranap="",Utang_Jasa_Sarana_Radiologi_Ranap="",
             Beban_Jasa_Perujuk_Radiologi_Ranap="",Utang_Jasa_Perujuk_Radiologi_Ranap="",Beban_Jasa_Menejemen_Radiologi_Ranap="",Utang_Jasa_Menejemen_Radiologi_Ranap="",
@@ -1767,6 +1767,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ?  "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
             }
+        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_radiologi where kd_pj=?",Penjab.getText().trim());
+        if(gtarif.equals("")){
+        Penjab.setText("001"); }
             try {
                 if(cara_bayar_radiologi.equals("Yes")&&kelas_radiologi.equals("No")){
                     pspemeriksaan.setString(1,Penjab.getText().trim());
