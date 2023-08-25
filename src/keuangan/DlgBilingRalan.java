@@ -676,12 +676,12 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                 }
             } 
             
-            if(tampilkan_ppnobat_ralan.equals("Yes")){
+//            if(tampilkan_ppnobat_ralan.equals("Yes")){
                 PPN_Keluaran=Sequel.cariIsi("select set_akun.PPN_Keluaran from set_akun");
                 if(PPN_Keluaran.equals("")){
                     PPN_Keluaran=Obat_Langsung_Ralan;
                 }
-            }
+//            }
         } catch (Exception e) {
             System.out.println("Notif : "+e);
         }

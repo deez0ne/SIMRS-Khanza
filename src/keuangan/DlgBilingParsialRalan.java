@@ -2946,7 +2946,7 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
 
                 if(i>0){                       
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText());
+                    kd_pj=Sequel.cariIsi("select reg_periksa.kd_pj from reg_periksa where reg_periksa.no_rawat=?",TNoRw.getText());
                     if(i==1){
                         Valid.panggilUrl("billing/LaporanBilling9.php?petugas="+akses.getkode().replaceAll(" ","_")+"&tanggal="+DTPTgl.getSelectedItem().toString().replaceAll(" ","_")+"&usere="+koneksiDB.USERHYBRIDWEB()+"&passwordte="+koneksiDB.PASHYBRIDWEB());
                     }else if(i==2){
@@ -3464,11 +3464,7 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
 
     public void setNoRm(String norwt,String kodedokter, String namadokter,String KodePoli) {
         TNoRw.setText(norwt);
-        this.kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",norwt);
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan where kd_pj=?",this.kd_pj);
-        if(gtarif.equals("")){
-        this.kd_pj="001";    
-        }
+        this.kd_pj=Sequel.cariIsi("select penjab.kd_klmpk_trf from reg_periksa left join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.no_rawat=?",norwt);
         this.kd_poli=KodePoli;
         KdDok.setText(kodedokter);
         TDokter.setText(namadokter);
@@ -4448,8 +4444,8 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and jns_perawatan_radiologi.nm_perawatan like ? "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
@@ -4482,8 +4478,8 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and jns_perawatan_radiologi.nm_perawatan like ?  "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
@@ -4514,15 +4510,11 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ? "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_radiologi where kd_pj=?",kd_pj);
-        if(gtarif.equals("")){
-        kd_pj="001";    
-        }
                     try {
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"Rawat Jalan");
@@ -4554,8 +4546,8 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ?  "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
@@ -4769,16 +4761,12 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,jns_perawatan_lab.total_byr,"+
                         "jns_perawatan_lab.bagian_rs,jns_perawatan_lab.bhp,jns_perawatan_lab.tarif_perujuk,"+
                         "jns_perawatan_lab.tarif_tindakan_dokter,jns_perawatan_lab.tarif_tindakan_petugas,"+
-                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_lab inner join penjab on penjab.kd_pj=jns_perawatan_lab.kd_pj where "+
+                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_lab inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_lab.kd_pj where "+
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and jns_perawatan_lab.kd_jenis_prw like ? or "+
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and jns_perawatan_lab.nm_perawatan like ? "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
                     try {
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",kd_pj);
-        if(gtarif.equals("")){
-        kd_pj="001";    
-        }
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"%"+TCariTindakan.getText().trim()+"%");
                         pstindakan.setString(3,kd_pj.trim());
@@ -4807,8 +4795,8 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,jns_perawatan_lab.total_byr,"+
                         "jns_perawatan_lab.bagian_rs,jns_perawatan_lab.bhp,jns_perawatan_lab.tarif_perujuk,"+
                         "jns_perawatan_lab.tarif_tindakan_dokter,jns_perawatan_lab.tarif_tindakan_petugas,"+
-                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_lab inner join penjab on penjab.kd_pj=jns_perawatan_lab.kd_pj where "+
+                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_lab inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_lab.kd_pj where "+
                         " jns_perawatan_lab.status='1' and jns_perawatan_lab.kd_jenis_prw like ? or "+
                         " jns_perawatan_lab.status='1' and jns_perawatan_lab.nm_perawatan like ?  "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
@@ -4839,16 +4827,12 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,jns_perawatan_lab.total_byr,"+
                         "jns_perawatan_lab.bagian_rs,jns_perawatan_lab.bhp,jns_perawatan_lab.tarif_perujuk,"+
                         "jns_perawatan_lab.tarif_tindakan_dokter,jns_perawatan_lab.tarif_tindakan_petugas,"+
-                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_lab inner join penjab on penjab.kd_pj=jns_perawatan_lab.kd_pj where "+
+                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_lab inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_lab.kd_pj where "+
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.kd_jenis_prw like ? or "+
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kd_pj=? or jns_perawatan_lab.kd_pj='-') and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.nm_perawatan like ? "+
                         "order by jns_perawatan_lab.kd_jenis_prw");
                     try {
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_lab where kd_pj=?",kd_pj);
-        if(gtarif.equals("")){
-        kd_pj="001";    
-        }
                         pstindakan.setString(1,kd_pj.trim());
                         pstindakan.setString(2,"Rawat Jalan");
                         pstindakan.setString(3,"%"+TCariTindakan.getText().trim()+"%");
@@ -4879,8 +4863,8 @@ public class DlgBilingParsialRalan extends javax.swing.JDialog {
                         "select jns_perawatan_lab.kd_jenis_prw,jns_perawatan_lab.nm_perawatan,jns_perawatan_lab.total_byr,"+
                         "jns_perawatan_lab.bagian_rs,jns_perawatan_lab.bhp,jns_perawatan_lab.tarif_perujuk,"+
                         "jns_perawatan_lab.tarif_tindakan_dokter,jns_perawatan_lab.tarif_tindakan_petugas,"+
-                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_lab inner join penjab on penjab.kd_pj=jns_perawatan_lab.kd_pj where "+
+                        "jns_perawatan_lab.kso,jns_perawatan_lab.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_lab inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_lab.kd_pj where "+
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.kd_jenis_prw like ? or "+
                         " jns_perawatan_lab.status='1' and (jns_perawatan_lab.kelas=? or jns_perawatan_lab.kelas='-') and jns_perawatan_lab.nm_perawatan like ?  "+
                         "order by jns_perawatan_lab.kd_jenis_prw");

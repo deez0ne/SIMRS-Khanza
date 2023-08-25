@@ -1731,8 +1731,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and jns_perawatan_radiologi.nm_perawatan like ? "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
@@ -1741,8 +1741,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and jns_perawatan_radiologi.nm_perawatan like ?  "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
@@ -1751,8 +1751,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ? "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
@@ -1761,15 +1761,12 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                         "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                         "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                        "from jns_perawatan_radiologi inner join penjab on penjab.kd_pj=jns_perawatan_radiologi.kd_pj where "+
+                        "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                        "from jns_perawatan_radiologi inner join penjab_klmpk_tarif on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj where "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "+
                         " jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ?  "+
                         "order by jns_perawatan_radiologi.kd_jenis_prw");
             }
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_radiologi where kd_pj=?",Penjab.getText().trim());
-        if(gtarif.equals("")){
-        Penjab.setText("001"); }
             try {
                 if(cara_bayar_radiologi.equals("Yes")&&kelas_radiologi.equals("No")){
                     pspemeriksaan.setString(1,Penjab.getText().trim());
@@ -1962,7 +1959,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 rs=pspemeriksaan.executeQuery();
                 while(rs.next()){
                     TNoRM.setText(rs.getString("no_rkm_medis"));
-                    Penjab.setText(rs.getString("kd_pj"));
+                    gtarif=Sequel.cariIsi("select kd_klmpk_trf from penjab where kd_pj=?",rs.getString("kd_pj").trim());
+                    Penjab.setText(gtarif);                    
                     KodePerujuk.setText(rs.getString("kd_dokter"));
                     NmPerujuk.setText(rs.getString("nm_dokter"));
                     TPasien.setText(rs.getString("nm_pasien"));
@@ -2092,9 +2090,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                     "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                     "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                    "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                    "from jns_perawatan_radiologi inner join penjab inner join permintaan_pemeriksaan_radiologi "+
-                    " on penjab.kd_pj=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "+
+                    "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                    "from jns_perawatan_radiologi inner join penjab_klmpk_tarif inner join permintaan_pemeriksaan_radiologi "+
+                    " on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "+
                     " permintaan_pemeriksaan_radiologi.noorder=? order by jns_perawatan_radiologi.kd_jenis_prw");            
             try {
                 pspemeriksaan.setString(1,order);
@@ -2124,9 +2122,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"+
                     "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"+
                     "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"+
-                    "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "+
-                    "from jns_perawatan_radiologi inner join penjab inner join permintaan_pemeriksaan_radiologi "+
-                    " on penjab.kd_pj=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "+
+                    "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab_klmpk_tarif.nm_klmpk_trf "+
+                    "from jns_perawatan_radiologi inner join penjab_klmpk_tarif inner join permintaan_pemeriksaan_radiologi "+
+                    " on penjab_klmpk_tarif.kd_klmpk_trf=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "+
                     " permintaan_pemeriksaan_radiologi.noorder=? order by jns_perawatan_radiologi.kd_jenis_prw");            
             try {
                 pspemeriksaan.setString(1,order);

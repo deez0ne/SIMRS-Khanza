@@ -1571,11 +1571,7 @@ private void ppPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         TNoRw.setText(norwt);
         TPasien.setText(pasien);
         kddokter.setText("");
-        this.kd_pj=Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?",TNoRw.getText());
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan_inap where kd_pj=?",this.kd_pj);
-        if(gtarif.equals("")){
-        this.kd_pj="001";    
-        }
+        this.kd_pj=Sequel.cariIsi("select penjab.kd_klmpk_trf from reg_periksa left join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.no_rawat=?",TNoRw.getText());
         norawatibu=Sequel.cariIsi("select ranap_gabung.no_rawat from ranap_gabung where ranap_gabung.no_rawat2=?",norwt);
         if(!norawatibu.equals("")){
             this.kd_bangsal=Sequel.cariIsi(

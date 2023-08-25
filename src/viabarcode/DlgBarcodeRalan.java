@@ -1119,10 +1119,6 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
                     " jns_perawatan.status='1' and jns_perawatan.nm_perawatan like ? or "+
                     " jns_perawatan.status='1' and kategori_perawatan.nm_kategori like ? order by jns_perawatan.nm_perawatan "); 
             try {
-        gtarif=Sequel.cariIsi("select kd_pj from jns_perawatan where kd_pj=?",this.kd_pj);
-        if(gtarif.equals("")){
-        this.kd_pj="001";    
-        }
                 if(poli_ralan.equals("Yes")&&cara_bayar_ralan.equals("Yes")){
                     pstindakan.setString(1,kd_pj.trim());
                     pstindakan.setString(2,kd_poli.trim());
@@ -1202,6 +1198,7 @@ public final class DlgBarcodeRalan extends javax.swing.JDialog {
         this.kd_dokter=Sequel.cariIsi("select reg_periksa.kd_dokter from reg_periksa where reg_periksa.no_rawat=?",norwt);
         this.norm=Sequel.cariIsi("select reg_periksa.no_rkm_medis from reg_periksa where reg_periksa.no_rawat=?",norwt);
         kenaikan=Sequel.cariIsiAngka("select (hargajual/100) from set_harga_obat_ralan where kd_pj=?",this.kd_pj);
+        this.kd_pj=Sequel.cariIsi("select penjab.kd_klmpk_trf from reg_periksa left join penjab on reg_periksa.kd_pj=penjab.kd_pj where reg_periksa.no_rawat=?",norwt);
         TCariTindakan.requestFocus();
         try {
             psset_tarif=koneksi.prepareStatement("select * from set_tarif");

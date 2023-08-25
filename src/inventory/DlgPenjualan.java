@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -529,7 +530,7 @@ public class DlgPenjualan extends javax.swing.JDialog {
                 if(rs.next()){
                     notapenjualan=rs.getString("cetaknotasimpanpenjualan");
                     verifikasi_penjualan_di_kasir=rs.getString("verifikasi_penjualan_di_kasir");
-                    tampilkan_ppnobat_ralan=rs.getString("verifikasi_penjualan_di_kasir");
+                    tampilkan_ppnobat_ralan=rs.getString("tampilkan_ppnobat_ralan");
                 }
             } catch (Exception e) {
                 System.out.println("Notif : "+e);
@@ -1016,6 +1017,11 @@ public class DlgPenjualan extends javax.swing.JDialog {
         PersenppnObat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         PersenppnObat.setName("PersenppnObat"); // NOI18N
         PersenppnObat.setPreferredSize(new java.awt.Dimension(150, 23));
+        PersenppnObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PersenppnObatActionPerformed(evt);
+            }
+        });
         PersenppnObat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 PersenppnObatKeyPressed(evt);
@@ -1512,6 +1518,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 */
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
+       Tgl.setDate(new Date());
         if(aktifkanbatch.equals("yes")){
             row=0;
             jml=tbObat.getRowCount();
@@ -2450,6 +2457,10 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         cariPPN(); 
         isKembali();
     }//GEN-LAST:event_BtnAll1ActionPerformed
+
+    private void PersenppnObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PersenppnObatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PersenppnObatActionPerformed
 
     /**
     * @param args the command line arguments

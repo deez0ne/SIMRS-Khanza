@@ -87,7 +87,7 @@ public class DlgPermintaanResepPulang extends javax.swing.JDialog {
 
         tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+            
         for (i = 0; i < 11; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if(i==0){
@@ -354,6 +354,11 @@ public class DlgPermintaanResepPulang extends javax.swing.JDialog {
                 JeniskelasItemStateChanged(evt);
             }
         });
+        Jeniskelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JeniskelasActionPerformed(evt);
+            }
+        });
         Jeniskelas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JeniskelasKeyPressed(evt);
@@ -535,7 +540,7 @@ public class DlgPermintaanResepPulang extends javax.swing.JDialog {
         jLabel8.setBounds(0, 72, 72, 23);
 
         DTPBeri.setForeground(new java.awt.Color(50, 70, 50));
-        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2022" }));
+        DTPBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-08-2023" }));
         DTPBeri.setDisplayFormat("dd-MM-yyyy");
         DTPBeri.setName("DTPBeri"); // NOI18N
         DTPBeri.setOpaque(false);
@@ -599,6 +604,7 @@ public class DlgPermintaanResepPulang extends javax.swing.JDialog {
 
         ChkJln.setBorder(null);
         ChkJln.setSelected(true);
+        ChkJln.setEnabled(false);
         ChkJln.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         ChkJln.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkJln.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -950,6 +956,10 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         // TODO add your handling code here:
     }//GEN-LAST:event_ChkJlnActionPerformed
 
+    private void JeniskelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JeniskelasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JeniskelasActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1056,6 +1066,14 @@ private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             }
         }
         
+        if(akses.getkuncitglf().equals("Yes")) {
+            DTPBeri.setEnabled(false);
+            ChkJln.setEnabled(false);} 
+        else             
+        {   
+            DTPBeri.setEnabled(true);
+            ChkJln.setEnabled(true);}
+
         Valid.tabelKosong(tabMode);
         for(i=0;i<jml;i++){
             tabMode.addRow(new Object[]{keranap[i],kodebarang[i],namabarang[i],kategori[i],satuan[i],kapasitas[i],stok[i],harga[i],hargabeli[i],subtotal[i],aturanpakai[i]});
