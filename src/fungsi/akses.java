@@ -211,7 +211,9 @@ public final class akses {
             master_menolak_anjuran_medis=false,penolakan_anjuran_medis=false,laporan_tahunan_penolakan_anjuran_medis=false,template_laporan_operasi=false,hasil_tindakan_eswl=false,
             checklist_kriteria_masuk_icu=false,checklist_kriteria_keluar_icu=false,akses_dokter_lain_rawat_jalan=false,follow_up_dbd=false,penilaian_risiko_jatuh_neonatus=false,
             persetujuan_pengajuan_biaya=false,pemeriksaan_fisik_ralan_per_penyakit=false,penilaian_lanjutan_resiko_jatuh_geriatri=false,pemantauan_ews_neonatus=false,
-            validasi_persetujuan_pengajuan_biaya=false,riwayat_perawatan_icare_bpjs=false,rekap_pengajuan_biaya=false;
+            validasi_persetujuan_pengajuan_biaya=false,riwayat_perawatan_icare_bpjs=false,rekap_pengajuan_biaya=false,penilaian_awal_medis_ralan_kulit_kelamin=false,
+            akun_host_to_host_bank_mandiri=false,penilaian_medis_hemodialisa=false,penilaian_level_kecemasan_ranap_anak=false,penilaian_lanjutan_resiko_jatuh_psikiatri=false,
+            penilaian_lanjutan_skrining_fungsional=false,penilaian_medis_ralan_rehab_medik=false,laporan_anastesi=false,template_persetujuan_penolakan_tindakan=false;
     
     public static void setData(String user, String pass) {
         try {        
@@ -1202,6 +1204,15 @@ public final class akses {
                         akses.validasi_persetujuan_pengajuan_biaya=true;
                         akses.riwayat_perawatan_icare_bpjs=true;
                         akses.rekap_pengajuan_biaya=true;
+                        akses.penilaian_awal_medis_ralan_kulit_kelamin=true;
+                        akses.akun_host_to_host_bank_mandiri=true;
+                        akses.penilaian_medis_hemodialisa=true;
+                        akses.penilaian_level_kecemasan_ranap_anak=true;
+                        akses.penilaian_lanjutan_resiko_jatuh_psikiatri=true;
+                        akses.penilaian_lanjutan_skrining_fungsional=true;
+                        akses.penilaian_medis_ralan_rehab_medik=true;
+                        akses.laporan_anastesi=true;
+                        akses.template_persetujuan_penolakan_tindakan=true;
                     }else if(rs2.getRow()>=1){   
                         rs2.beforeFirst();
                         rs2.next();
@@ -2176,6 +2187,15 @@ public final class akses {
                         akses.validasi_persetujuan_pengajuan_biaya=rs2.getBoolean("validasi_persetujuan_pengajuan_biaya");
                         akses.riwayat_perawatan_icare_bpjs=rs2.getBoolean("riwayat_perawatan_icare_bpjs");
                         akses.rekap_pengajuan_biaya=rs2.getBoolean("rekap_pengajuan_biaya");
+                        akses.penilaian_awal_medis_ralan_kulit_kelamin=rs2.getBoolean("penilaian_awal_medis_ralan_kulit_kelamin");
+                        akses.akun_host_to_host_bank_mandiri=rs2.getBoolean("akun_host_to_host_bank_mandiri");
+                        akses.penilaian_medis_hemodialisa=rs2.getBoolean("penilaian_medis_hemodialisa");
+                        akses.penilaian_level_kecemasan_ranap_anak=rs2.getBoolean("penilaian_level_kecemasan_ranap_anak");
+                        akses.penilaian_lanjutan_resiko_jatuh_psikiatri=rs2.getBoolean("penilaian_lanjutan_resiko_jatuh_psikiatri");
+                        akses.penilaian_lanjutan_skrining_fungsional=rs2.getBoolean("penilaian_lanjutan_skrining_fungsional");
+                        akses.penilaian_medis_ralan_rehab_medik=rs2.getBoolean("penilaian_medis_ralan_rehab_medik");
+                        akses.laporan_anastesi=rs2.getBoolean("laporan_anastesi");
+                        akses.template_persetujuan_penolakan_tindakan=rs2.getBoolean("template_persetujuan_penolakan_tindakan");
                     }else if((rs.getRow()==0)&&(rs2.getRow()==0)){
                         akses.kode="";                  
                         akses.penyakit= false;
@@ -3148,6 +3168,15 @@ public final class akses {
                         akses.validasi_persetujuan_pengajuan_biaya=false;
                         akses.riwayat_perawatan_icare_bpjs=false;
                         akses.rekap_pengajuan_biaya=false;
+                        akses.penilaian_awal_medis_ralan_kulit_kelamin=false;
+                        akses.akun_host_to_host_bank_mandiri=false;
+                        akses.penilaian_medis_hemodialisa=false;
+                        akses.penilaian_level_kecemasan_ranap_anak=false;
+                        akses.penilaian_lanjutan_resiko_jatuh_psikiatri=false;
+                        akses.penilaian_lanjutan_skrining_fungsional=false;
+                        akses.penilaian_medis_ralan_rehab_medik=false;
+                        akses.laporan_anastesi=false;
+                        akses.template_persetujuan_penolakan_tindakan=false;
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : "+e);
@@ -4182,4 +4211,13 @@ public final class akses {
     public static boolean getvalidasi_persetujuan_pengajuan_biaya(){return akses.validasi_persetujuan_pengajuan_biaya;}
     public static boolean getriwayat_perawatan_icare_bpjs(){return akses.riwayat_perawatan_icare_bpjs;}
     public static boolean getrekap_pengajuan_biaya(){return akses.rekap_pengajuan_biaya;}
+    public static boolean getpenilaian_awal_medis_ralan_kulit_kelamin(){return akses.penilaian_awal_medis_ralan_kulit_kelamin;}
+    public static boolean getakun_host_to_host_bank_mandiri(){return akses.akun_host_to_host_bank_mandiri;}
+    public static boolean getpenilaian_medis_ralan_hemodialisa(){return akses.penilaian_medis_hemodialisa;}
+    public static boolean getpenilaian_level_kecemasan_ranap_anak(){return akses.penilaian_level_kecemasan_ranap_anak;}
+    public static boolean getpenilaian_lanjutan_resiko_jatuh_psikiatri(){return akses.penilaian_lanjutan_resiko_jatuh_psikiatri;}
+    public static boolean getpenilaian_lanjutan_skrining_fungsional(){return akses.penilaian_lanjutan_skrining_fungsional;}
+    public static boolean getpenilaian_medis_ralan_rehab_medik(){return akses.penilaian_medis_ralan_rehab_medik;}
+    public static boolean getlaporan_anastesi(){return akses.laporan_anastesi;}
+    public static boolean gettemplate_persetujuan_penolakan_tindakan(){return akses.template_persetujuan_penolakan_tindakan;}
 }   
